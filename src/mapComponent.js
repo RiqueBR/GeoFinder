@@ -37,35 +37,18 @@ class Map extends Component {
       this.onScriptLoad()
       this.onGeoLocation()
     }
-    //this.handleAdressChange()
   }
 
-  // handleAdressChange = () => {
-  //   this.setState({
-  //     address: 'Dumberton rd, Glasgow'
-  //   })
-  // }
-
-  // UNSAFE_componentWillReceiveProps(nextProps){
-  //   if(nextProps.adress !== )
-  // }
-
-//   componentWillReceiveProps(nextProps){
-//   if(nextProps.someValue!==this.props.someValue){
-//     //Perform some operation
-//     this.setState({someState: someValue });
-//     this.classMethod();
-//   }
-// }
 
   onGeoLocation() {
     let geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({'address': this.props.onLocationGeocode}, function (results, status) {
       if (status === 'OK') {
-        //this.setState({
-        console.log(results[0].geometry.location.lat(), results[0].geometry.location.lng());
 
-        //})
+        this.setState({
+        lat: results[0].geometry.location.lat(), 
+        lng: results[0].geometry.location.lng()
+        })
         
       } else {
         console.log('Geocode was not successful for the following reason: ' + status);

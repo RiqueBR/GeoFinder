@@ -47,5 +47,3 @@ class App extends Component {
 render(<App />, document.getElementById('root'));
 
 export default App;
-
-// Dummy lat: 55.8833, lng: -4.3 -- Partick
