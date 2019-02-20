@@ -5,11 +5,24 @@ import Map from './mapComponent'
 class App extends Component {
   constructor(props) {
     super(props);
+
+	this.state = {
+		address: ''
+	}
+  }
+
+	componentDidMount(){
+		this.handleAdressChange()
+	}
+
+    handleAdressChange = () => {
+    this.setState({
+      address: 'Royal Mile, Edinburgh'
+    })
   }
   
 
   render() {
-
     return (
       <Map
         id="myMap"
@@ -19,12 +32,12 @@ class App extends Component {
         }}
         onMapLoad={map => {
           var marker = new window.google.maps.Marker({
-            position: {lat: this.props.lat, lng: this.props.lng },
+            position: {lat: 55.8833, lng: -4.3},
             map: map,
             title: 'Hello Glasgow!'
           });
         }}
-		// onLocationGeocode = {this.handleGeocode()}
+		onLocationGeocode = {this.state.address}
 
       />
     );
@@ -34,3 +47,5 @@ class App extends Component {
 render(<App />, document.getElementById('root'));
 
 export default App;
+
+// Dummy lat: 55.8833, lng: -4.3 -- Partick

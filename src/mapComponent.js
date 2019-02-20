@@ -7,8 +7,7 @@ class Map extends Component {
 
     this.state = {
       lat: 0,
-      lng: 0,
-      address: ' '
+      lng: 0
     }
     this.onScriptLoad = this.onScriptLoad.bind(this)
     this.onGeoLocation = this.onGeoLocation.bind(this)
@@ -36,19 +35,32 @@ class Map extends Component {
       })
     } else {
       this.onScriptLoad()
+      this.onGeoLocation()
     }
-    this.handleAdressChange()
+    //this.handleAdressChange()
   }
 
-  handleAdressChange = () => {
-    this.setState({
-      address: 'Dumberton rd, Glasgow'
-    })
-  }
+  // handleAdressChange = () => {
+  //   this.setState({
+  //     address: 'Dumberton rd, Glasgow'
+  //   })
+  // }
+
+  // UNSAFE_componentWillReceiveProps(nextProps){
+  //   if(nextProps.adress !== )
+  // }
+
+//   componentWillReceiveProps(nextProps){
+//   if(nextProps.someValue!==this.props.someValue){
+//     //Perform some operation
+//     this.setState({someState: someValue });
+//     this.classMethod();
+//   }
+// }
 
   onGeoLocation() {
     let geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({'address': this.state.address}, function (results, status) {
+    geocoder.geocode({'address': this.props.onLocationGeocode}, function (results, status) {
       if (status === 'OK') {
         //this.setState({
         console.log(results[0].geometry.location.lat(), results[0].geometry.location.lng());
@@ -69,9 +81,10 @@ class Map extends Component {
           width: 500,
           height: 500
         }}
-          id = {this.props.id}/>
+          id = {this.props.id} />
     );
   }
 }
 
 export default Map
+
