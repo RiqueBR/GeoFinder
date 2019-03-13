@@ -1,3 +1,13 @@
+div#map{
+width: 870px;
+height: 500px;
+position: relative;
+overflow: hidden;
+margin-left: 30px;
+margin-top: 80px;
+
+}
+
 .App {
   text-align: center;
 }

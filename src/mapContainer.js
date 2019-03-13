@@ -6,23 +6,40 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-	this.state = {
-		address: ''
-	}
+    this.state = {
+      address: '',
+      newLat: 0,
+      newLng: 0
+    }
   }
 
 	componentDidMount(){
 		this.handleAdressChange()
+		this.handleCoordinatesChange()
 	}
-
+	
+	// handles the users input of address
     handleAdressChange = () => {
     this.setState({
       address: 'Royal Mile, Edinburgh'
     })
   }
+
+	// Function to gather data (already turned into lat & lng from adress) from child component
+  handleCoordinatesChange = (dataParsed) => {
+	  console.log(dataParsed.parsedLat, dataParsed.parsedLng);
+	  
+	// this.setState({
+	// 	newLat: this.parsedLat,
+	// 	newLng: this.parsedLng
+	// })  
+  }
   
 
   render() {
+	//  console.log(this.state.newLat, this.state.newLng);
+	  
+	  
     return (
       <Map
         id="myMap"
@@ -38,6 +55,7 @@ class App extends Component {
           });
         }}
 		onLocationGeocode = {this.state.address}
+		onCoordinateChange = {this.handleCoordinatesChange()}
 
       />
     );
@@ -47,3 +65,5 @@ class App extends Component {
 render(<App />, document.getElementById('root'));
 
 export default App;
+
+// Dummy lat: 55.8833, lng: -4.3 -- Partick
